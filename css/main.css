@@ -1,0 +1,39 @@
+.btn {
+    background-color: #000;
+    border: 1px solid;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    line-height: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.btn:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+#gameBoard img {
+    border: 1px solid black;
+    margin: 5px;
+    width: 200px;
+}
+
+#start-game{
+    display:inline-block;
+    margin-left: 20px;
+}
+
+.card, .dib {
+    display:inline-block;
+}
+
+.vis-hidden {
+    visibility: hidden;
+}
+
+.text-big{
+   font-weight:bold;
+   font-size:20px;
+}
