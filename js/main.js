@@ -214,14 +214,17 @@ var Game = function () {
     this.init = function () {
         var self = this;
         $('#start-game').hide();
-        $('#timer').addClass('vis-hidden');
         self.board.shuffle();
         self.drawBoard();
         self.board.openAll();
         self.status = self.statusShowingCards;
+        $('#timer').text(self.timerInitial.time);
+        $('#timer').removeClass('vis-hidden');
         self.intervalInitial = setInterval(function () {
+            $('#timer').text(self.timerInitial.time - 1);
             self.timerInitial.decreaseTime();
             if (self.timerInitial.time == 0) {
+                $('#timer').text(self.timerPlaying.time);
                 self.board.closeAll();
                 self.status = self.statusPlaying;
                 clearInterval(self.intervalInitial);
@@ -238,7 +241,7 @@ var Game = function () {
         self.playInterval = setInterval(function () {
             $('#timer').text(self.timerPlaying.time);
             self.timerPlaying.decreaseTime();
-            if (self.timerPlaying.time == 0) {
+            if (self.timerPlaying.time + 1 == 0) {
                 self.status = self.statusLost;
                 self.ShowNotification(self.notificationLost);
                 clearInterval(self.playInterval);
@@ -256,7 +259,6 @@ var Game = function () {
         $(document).on('click', '#start-game', function (event) {
             event.preventDefault();
             self.init();
-            $('#timer').text(self.timerPlaying.time);
         });
 
     };
@@ -268,7 +270,7 @@ var Game = function () {
             self.init();
             self.timerInitial.restartTime();
             self.timerPlaying.restartTime();
-            $('#timer').text(self.timerPlaying.time);
+            $('#timer').text(self.timerInitial.time);
             $('#notification-modal').modal('hide');
 
         });
